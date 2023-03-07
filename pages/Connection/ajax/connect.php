@@ -62,7 +62,10 @@ EOD;
     $_SESSION['user'] = $ligne['username'];
     $_SESSION['id'] = $ligne['id'];
     $_SESSION['typeMembre'] = $ligne['typeMembre'];
-    echo json_encode($ligne2);
+    if($ligne2){
+        $_SESSION['admin'] = $ligne2['administrateur'];
+    }
+    echo 1;
 
 }
 

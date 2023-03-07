@@ -40,14 +40,8 @@ function connecter() {
                 error: reponse => {
                     Std.afficherErreur(reponse.responseText);
                 },
-                success: (data) => {
-
-                    if(data.administrateur == 1){
-                        location.href="../admin/index.php";
-                    }else{
-                        location.href="../accueil/indexConnect.php"
-                    }
-
+                success: () => {
+                    location.href = "../accueil/indexConnect.php";
                 }
             });
         }

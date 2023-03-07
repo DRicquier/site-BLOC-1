@@ -18,6 +18,7 @@
     <script src="index.js"></script>
 
 </head>
+<?php require '../../Includes/header.php'; ?>
 <body>
 <div>
     <div><h1 class="titre display-3">Administration</h1></div>
