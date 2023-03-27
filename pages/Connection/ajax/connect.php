@@ -44,25 +44,24 @@ if (!$ligne) {
 }
 else {
     $password = hash('sha256', $password);
-    $sql = <<<EOD
+    $sql2 = <<<EOD
             Select administrateur
             from membre
             where username = :username and motDePasse = :password;
 EOD;
-    $curseur = $db->prepare($sql);
-    $curseur->bindParam('username', $username);
-    $curseur->bindParam('password', $password);
-    $curseur->execute();
-    $ligne2 = $curseur->fetch(PDO::FETCH_ASSOC);
-    $curseur->closeCursor();
-
+    $curseur2 = $db->prepare($sql2);
+    $curseur2->bindParam('username', $username);
+    $curseur2->bindParam('password', $password);
+    $curseur2->execute();
+    $ligne2 = $curseur2->fetch(PDO::FETCH_ASSOC);
+    $curseur2->closeCursor();
 
 
     // création de la connexion
     $_SESSION['user'] = $ligne['username'];
     $_SESSION['id'] = $ligne['id'];
     $_SESSION['typeMembre'] = $ligne['typeMembre'];
-    if($ligne2){
+    if($ligne2['administrateur'] == 1){
         $_SESSION['admin'] = $ligne2['administrateur'];
     }
     echo 1;

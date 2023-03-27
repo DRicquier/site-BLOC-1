@@ -12,16 +12,24 @@ function init() {
     });
 
     $.ajax({
-        url: "ajax/getlesProduits.php",
+        url: "ajax/getlesProduitsActifs.php",
         type: 'POST',
         dataType: "json",
-        success: afficherProduits,
+        success: afficherProduitsActifs,
+        error: reponse => console.error(reponse.responseText)
+    });
+
+    $.ajax({
+        url: "ajax/getlesProduitsInactifs.php",
+        type: 'POST',
+        dataType: "json",
+        success: afficherProduitsInactifs,
         error: reponse => console.error(reponse.responseText)
     });
 }
 
-function afficherProduits(data) {
-    let lesProduits = document.getElementById('lesProduits');
+function afficherProduitsActifs(data) {
+    let lesProduits = document.getElementById('lesProduitsActifs');
 
     let tr0 = document.createElement('tr');
     lesProduits.appendChild(tr0);
@@ -69,19 +77,15 @@ function afficherProduits(data) {
         let td1 = document.createElement('td');
         let td1Contenue = document.createElement('img');
 
-        if(unProduit.categorie === 'Status'){
+        if (unProduit.categorie === 'Status') {
             td1Contenue.src = "../status/image/" + unProduit.image;
-        }
-        else if(unProduit.categorie === 'Outils'){
+        } else if (unProduit.categorie === 'Outils') {
             td1Contenue.src = "../outils/image/" + unProduit.image;
-        }
-        else if(unProduit.categorie === 'Jouet'){
+        } else if (unProduit.categorie === 'Jouet') {
             td1Contenue.src = "../jouets/image/" + unProduit.image;
-        }
-        else if(unProduit.categorie === 'Divers'){
+        } else if (unProduit.categorie === 'Divers') {
             td1Contenue.src = "../divers/image/" + unProduit.image;
-        }
-        else{
+        } else {
             td1Contenue.src = "../deco/image/" + unProduit.image;
         }
         td1Contenue.style.width = '50px';
@@ -110,7 +114,7 @@ function afficherProduits(data) {
         listeCategorie.style.width = "150px";
         listeCategorie.id = "categorie=" + unProduit.categorie;
         listeCategorie.classList.add('form-select');
-        let lesCategories = ['Jouet','Status','Deco','Outils','Divers'];
+        let lesCategories = ['Jouet', 'Status', 'Deco', 'Outils', 'Divers'];
 
         for (const laCategorie of lesCategories) {
             let option;
@@ -132,7 +136,7 @@ function afficherProduits(data) {
                 success: function () {
                     Std.afficherSucces("Modification enregistrée");
                     $.ajax({
-                        url: 'ajax/getlesProduits.php',
+                        url: 'ajax/getlesProduitsActifs.php',
                         type: 'GET',
                         dataType: 'json',
                         error: reponse => console.error(reponse.responseText),
@@ -154,8 +158,8 @@ function afficherProduits(data) {
 
         let td7 = document.createElement('td');
         let buttonSupprimer = document.createElement('button');
-        buttonSupprimer.classList.add('btn','btn-danger');
-        buttonSupprimer.textContent= "Supprimer";
+        buttonSupprimer.classList.add('btn', 'btn-danger');
+        buttonSupprimer.textContent = "Supprimer";
         buttonSupprimer.type = "button";
         td7.appendChild(buttonSupprimer);
         tr.appendChild(td7);
@@ -167,7 +171,7 @@ function afficherProduits(data) {
                 url: "ajax/supprimerUnProduit.php",
                 type: 'post',
                 dataType: "json",
-                data: { id: unProduit.id},
+                data: {id: unProduit.id},
                 success: function () {
                     Std.afficherSucces("Produit supprimé");
                     lesUtilisateurs.removeChild();
@@ -186,6 +190,7 @@ function afficherProduits(data) {
 
 
 }
+
 function afficherUser(data) {
     let lesUtilisateurs = document.getElementById('lesUtilisateurs');
 
@@ -261,7 +266,7 @@ function afficherUser(data) {
         estAdmin.style.width = "80px";
         estAdmin.id = "admin=" + unUtilisateur.administrateur;
         estAdmin.classList.add('form-select');
-        let adminOuPas = ['0','1'];
+        let adminOuPas = ['0', '1'];
 
         for (const Ladmin of adminOuPas) {
             let option;
@@ -300,8 +305,8 @@ function afficherUser(data) {
 
         let td7User = document.createElement('td');
         let buttonSupprimer = document.createElement('button');
-        buttonSupprimer.classList.add('btn','btn-danger');
-        buttonSupprimer.textContent= "Supprimer";
+        buttonSupprimer.classList.add('btn', 'btn-danger');
+        buttonSupprimer.textContent = "Supprimer";
         buttonSupprimer.type = "button";
         td7User.appendChild(buttonSupprimer);
         trUser2.appendChild(td7User);
@@ -313,7 +318,7 @@ function afficherUser(data) {
                 url: "ajax/supprimerUser.php",
                 type: 'post',
                 dataType: "json",
-                data: { id: un.id},
+                data: {id: un.id},
                 success: function () {
                     Std.afficherSucces("Membre supprimé");
                     lesUtilisateurs.removeChild();
@@ -330,7 +335,145 @@ function afficherUser(data) {
         }
     }
 
+}
 
+function afficherProduitsInactifs(data) {
+    let lesProduits = document.getElementById('lesProduitsInactifs');
+
+    let tr0 = document.createElement('tr');
+    lesProduits.appendChild(tr0);
+    let th1 = document.createElement('th');
+    let th1Contenue = document.createTextNode('Image');
+    th1.appendChild(th1Contenue);
+    tr0.appendChild(th1);
+
+    let th2 = document.createElement('th');
+    let th2Contenue = document.createTextNode('Nom');
+    th2.appendChild(th2Contenue);
+    tr0.appendChild(th2);
+
+    let th3 = document.createElement('th');
+    let th3Contenue = document.createTextNode('Type de bois');
+    th3.appendChild(th3Contenue);
+    tr0.appendChild(th3);
+
+    let th4 = document.createElement('th');
+    let th4Contenue = document.createTextNode('Username vendeur');
+    th4.appendChild(th4Contenue);
+    tr0.appendChild(th4);
+
+    let th5 = document.createElement('th');
+    let th5Contenue = document.createTextNode('Categorie');
+    th5.appendChild(th5Contenue);
+    tr0.appendChild(th5);
+
+    let th6 = document.createElement('th');
+    let th6Contenue = document.createTextNode('Prix');
+    th6.appendChild(th6Contenue);
+    tr0.appendChild(th6);
+
+    let th7 = document.createElement('th');
+    let th7Contenue = document.createTextNode('Actif');
+    th7.appendChild(th7Contenue);
+    tr0.appendChild(th7);
+
+
+    for (let unProduit of data) {
+
+        let tr = document.createElement('tr');
+        tr.style.marginRight = "50px";
+
+        let td1 = document.createElement('td');
+        let td1Contenue = document.createElement('img');
+
+        if (unProduit.categorie === 'Status') {
+            td1Contenue.src = "../status/image/" + unProduit.image;
+        } else if (unProduit.categorie === 'Outils') {
+            td1Contenue.src = "../outils/image/" + unProduit.image;
+        } else if (unProduit.categorie === 'Jouet') {
+            td1Contenue.src = "../jouets/image/" + unProduit.image;
+        } else if (unProduit.categorie === 'Divers') {
+            td1Contenue.src = "../divers/image/" + unProduit.image;
+        } else {
+            td1Contenue.src = "../deco/image/" + unProduit.image;
+        }
+        td1Contenue.style.width = '50px';
+        td1Contenue.style.height = '50px';
+        td1.appendChild(td1Contenue);
+        tr.appendChild(td1);
+
+
+        let td3 = document.createElement('td');
+        let td3Contenue = document.createTextNode(unProduit.typedebois);
+        td3.appendChild(td3Contenue);
+        tr.appendChild(td3);
+
+        let td4 = document.createElement('td');
+        let td4Contenue = document.createTextNode(unProduit.leVendeur);
+        td4.appendChild(td4Contenue);
+        tr.appendChild(td4);
+
+        let td5 = document.createElement('td');
+        let td5Contenue = document.createTextNode(unProduit.categorie);
+        td5.appendChild(td5Contenue);
+        tr.appendChild(td5);
+
+
+        let td6 = document.createElement('td');
+        let td6Contenue = document.createTextNode(unProduit.prix);
+        td6.appendChild(td6Contenue);
+        tr.appendChild(td6);
+
+        let td7 = document.createElement('td');
+        let listeActifs = document.createElement('select');
+        listeActifs.style.width = "150px";
+        listeActifs.id = "actif=" + unProduit.actif;
+        listeActifs.classList.add('form-select');
+        let lesActifs = ['Actif','Inactif'];
+
+        for (const unActif of lesActifs) {
+            let option;
+            let lActif;
+            if(unActif === 'Actif'){
+                lActif = '1';
+            }else{
+                lActif = '0';
+            }
+            if (lActif === unProduit.categorie) {
+                option = new Option(unActif, false, true, true);
+            } else {
+                option = new Option(unActif);
+            }
+            listeActifs.appendChild(option);
+        }
+        td7.appendChild(listeActifs);
+
+        listeActifs.onchange = () => {
+            $.ajax({
+                url: 'ajax/modifActif.php',
+                type: 'POST',
+                data: {actif: listeActifs.value, idProduit: unProduit.id},
+                dataType: "json",
+                success: function () {
+                    Std.afficherSucces("Modification enregistrée");
+                    $.ajax({
+                        url: 'ajax/getlesProduitsInactifs.php',
+                        type: 'GET',
+                        dataType: 'json',
+                        error: reponse => console.error(reponse.responseText),
+                        success: afficher
+                    });
+
+                },
+                error: function (request) {
+                    Std.afficherErreur(request.responseText)
+                }
+            })
+        };
+        tr.appendChild(td7);
+
+        lesProduits.appendChild(tr);
+    }
 }
 
 

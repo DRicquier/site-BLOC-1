@@ -7,6 +7,7 @@ $db = Database::getInstance();
 $sql = <<<EOD
             Select id, nom, typedebois, (select username from membre where produit.idMembre = membre.id) as leVendeur, (select nom from categorie where produit.idCategorie = categorie.id) as categorie, image, prix
             from produit
+            where actif = 1
             ORDER BY idMembre, id desc;
 EOD;
 $curseur = $db->prepare($sql);
