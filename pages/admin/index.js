@@ -31,6 +31,7 @@ function init() {
 function afficherProduitsActifs(data) {
     let lesProduits = document.getElementById('lesProduitsActifs');
 
+
     let tr0 = document.createElement('tr');
     lesProduits.appendChild(tr0);
     let th1 = document.createElement('th');
@@ -194,42 +195,6 @@ function afficherProduitsActifs(data) {
 function afficherUser(data) {
     let lesUtilisateurs = document.getElementById('lesUtilisateurs');
 
-    let trUser = document.createElement('tr');
-    lesUtilisateurs.appendChild(trUser);
-    let th1User = document.createElement('th');
-    let th1ContenueUser = document.createTextNode('Nom');
-    th1User.appendChild(th1ContenueUser);
-    trUser.appendChild(th1User);
-
-    let th2User = document.createElement('th');
-    let th2ContenueUser = document.createTextNode('Prenom');
-    th2User.appendChild(th2ContenueUser);
-    trUser.appendChild(th2User);
-
-    let th3User = document.createElement('th');
-    let th3ContenueUser = document.createTextNode('Email');
-    th3User.appendChild(th3ContenueUser);
-    trUser.appendChild(th3User);
-
-    let th4User = document.createElement('th');
-    let th4ContenueUser = document.createTextNode('Username');
-    th4User.appendChild(th4ContenueUser);
-    trUser.appendChild(th4User);
-
-    let th5User = document.createElement('th');
-    let th5ContenueUser = document.createTextNode('Type');
-    th5User.appendChild(th5ContenueUser);
-    trUser.appendChild(th5User);
-
-    let th6User = document.createElement('th');
-    let th6Contenue = document.createTextNode('Administrateur');
-    th6User.appendChild(th6Contenue);
-    trUser.appendChild(th6User);
-
-    let th7User = document.createElement('th');
-    let th7ContenueUser = document.createTextNode('Action');
-    th7User.appendChild(th7ContenueUser);
-    trUser.appendChild(th7User);
 
     for (let unUtilisateur of data) {
 

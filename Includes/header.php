@@ -55,7 +55,6 @@ if (!isset($_SESSION['user'])) {
                 </ul>
             </div>
         </div>
-        <a href="../../pages/panier/panier.php"><img src= "../../Ressource/panier.png" width="75px" style="margin-right: 50px "/></a>
     </nav>
 
 </header>';
