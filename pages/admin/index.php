@@ -31,12 +31,15 @@
             </div>
         </div>
 
-        <div class="gestionProduits">
+        <div class="gestionProduitsActifs">
             <h1 class="display-7">Les produits actifs</h1>
             <div class=" produit overflow-scroll">
                 <table style="width: 150%"id="lesProduitsActifs">
                 </table>
             </div>
+
+        </div>
+        <div class="gestionProduitsInactifs">
             <h1 class="display-7">Les produits inactifs</h1>
             <div class=" produit overflow-scroll">
                 <table style="width: 150%"id="lesProduitsInactifs">
@@ -44,6 +47,7 @@
             </div>
         </div>
     </div>
+
 
 
 </div>

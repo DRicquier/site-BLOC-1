@@ -5,7 +5,7 @@ require '../../../class/class.database.php';
 
 
 // récupération des données transmises
-$element = $_POST['idObjet'];
+$idObjet = $_POST['idObjet'];
 $idMembre = $_SESSION['id'];
 
 //contrôle afin de savoir si le fichier n'existe pas déjà
@@ -31,22 +31,24 @@ if(!isset($ligne)) {
 //savoir si l'objet fait partie déjà partie du panier du membre si c'est le cas, ajouter une quantité +1
 
 $sql = <<<EOD
-        Select 1 from panier where idProduit = :idProduit
+        Select 1 from panier where idProduit = :idProduit and idMembre = :idMembre
 EOD;
 
 $curseur = $db->prepare($sql);
-$curseur->bindParam('idProduit', $element);
+$curseur->bindParam('idProduit', $idObjet);
+$curseur->bindParam('idMembre', $idMembre);
 $curseur->execute();
 $ligne2 = $curseur->fetch(PDO::FETCH_ASSOC);
 
 
 if($ligne2){
     $sql = <<<EOD
-        update panier set quantite = quantite + 1 where idProduit = :idProduit 
+        update panier set quantite = quantite + 1 where idProduit = :idProduit and idMembre = :idMembre
 EOD;
 
     $curseur = $db->prepare($sql);
-    $curseur->bindParam('idProduit', $element);
+    $curseur->bindParam('idProduit', $idObjet);
+    $curseur->bindParam('idMembre', $idMembre);
     $curseur->execute();
     echo 1;
 }
@@ -57,7 +59,7 @@ EOD;
 
     $curseur = $db->prepare($sql);
     $curseur->bindParam('idMembre', $idMembre);
-    $curseur->bindParam('idProduit', $element);
+    $curseur->bindParam('idProduit', $idObjet);
     $curseur->execute();
     echo 1;
 }

@@ -3,18 +3,18 @@ session_start();
 require '../../../class/class.database.php';
 
 // récupération des données
-$categorie = $_POST["categorie"];
+$actif = $_POST["actif"];
 $idProduit = $_POST["idProduit"];
 
 // lancement de la mise à jour
 $db = Database::getInstance();
 $sql = <<<EOD
     update produit
-        set idCategorie = (select id from categorie where nom = :categorie)
+        set actif = :actif
     where id = :idProduit;
 EOD;
 $curseur = $db->prepare($sql);
-$curseur->bindParam('categorie', $categorie);
+$curseur->bindParam('actif', $actif);
 $curseur->bindParam('idProduit', $idProduit);
 try {
     $curseur->execute();

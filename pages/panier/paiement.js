@@ -104,19 +104,19 @@ function afficher(data) {
     for (let o of data) {
 
         let categorie;
-        if( o.idCategorie === '2'){
+        if( o.idCategorie == '2'){
             categorie = "status"
         }
-        else if( o.idCategorie === '1') {
+        else if( o.idCategorie == '1') {
             categorie = "jouets"
         }
-        else if( o.idCategorie === '3') {
+        else if( o.idCategorie == '3') {
             categorie = "deco";
         }
-        else if ( o.idCategorie === '4'){
+        else if ( o.idCategorie == '4'){
             categorie = "outils";
         }
-        else if (o.idCategorie === '5'){
+        else if (o.idCategorie == '5'){
             categorie = "divers";
         }
         else {

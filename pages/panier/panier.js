@@ -52,26 +52,25 @@ function afficher(data) {
     for (let o of data) {
 
         let categorie;
-        console.log(o.idCategorie);
-        if( o.idCategorie === '2'){
+
+        if( o.idCategorie == '2'){
             categorie = "status"
         }
-        else if( o.idCategorie === '1') {
+        else if( o.idCategorie == '1') {
             categorie = "jouets"
         }
-        else if( o.idCategorie === '3') {
+        else if( o.idCategorie == '3') {
             categorie = "deco";
         }
-        else if ( o.idCategorie === '4'){
+        else if ( o.idCategorie == '4'){
             categorie = "outils";
         }
-        else if (o.idCategorie === '5'){
+        else if (o.idCategorie == '5'){
             categorie = "divers";
         }
         else {
             categorie = "";
         }
-
         prixTotal += parseInt(o.prix) * parseInt(o.quantite);
         let tr = document.createElement('tr');
 
@@ -101,7 +100,7 @@ function afficher(data) {
 
         for (const uneQte of quantitePossible) {
             let option;
-            if (uneQte === o.quantite) {
+            if (uneQte == o.quantite) {
                 option = new Option(uneQte, false, true, true);
             } else {
                 option = new Option(uneQte);
@@ -109,8 +108,10 @@ function afficher(data) {
             qteListe.appendChild(option);
         }
         td4.appendChild(qteListe);
+
         qteListe.onchange = () => {
             $.ajax({
+
                 url: 'ajax/modifQuantite.php',
                 type: 'POST',
                 data: {qte: qteListe.value, idProduit: o.idProduit},

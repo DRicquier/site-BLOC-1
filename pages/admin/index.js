@@ -403,6 +403,11 @@ function afficherProduitsInactifs(data) {
         tr.appendChild(td1);
 
 
+        let td2 = document.createElement('td');
+        let td2Contenue = document.createTextNode(unProduit.nom);
+        td2.appendChild(td2Contenue);
+        tr.appendChild(td2);
+
         let td3 = document.createElement('td');
         let td3Contenue = document.createTextNode(unProduit.typedebois);
         td3.appendChild(td3Contenue);
@@ -427,32 +432,38 @@ function afficherProduitsInactifs(data) {
         let td7 = document.createElement('td');
         let listeActifs = document.createElement('select');
         listeActifs.style.width = "150px";
-        listeActifs.id = "actif=" + unProduit.actif;
+        listeActifs.id = unProduit.actif;
         listeActifs.classList.add('form-select');
         let lesActifs = ['Actif','Inactif'];
-
+        let lActif;
         for (const unActif of lesActifs) {
             let option;
-            let lActif;
-            if(unActif === 'Actif'){
+            if(unActif == 'Actif'){
                 lActif = '1';
             }else{
                 lActif = '0';
             }
-            if (lActif === unProduit.categorie) {
+            if (lActif == unProduit.actif) {
                 option = new Option(unActif, false, true, true);
             } else {
                 option = new Option(unActif);
             }
             listeActifs.appendChild(option);
         }
+
         td7.appendChild(listeActifs);
 
         listeActifs.onchange = () => {
+            let changementActif;
+            if(lActif == '0'){
+                changementActif = '1';
+            }else{
+                changementActif = '0'
+            }
             $.ajax({
                 url: 'ajax/modifActif.php',
                 type: 'POST',
-                data: {actif: listeActifs.value, idProduit: unProduit.id},
+                data: {actif: changementActif, idProduit: unProduit.id},
                 dataType: "json",
                 success: function () {
                     Std.afficherSucces("Modification enregistrée");
