@@ -32,44 +32,6 @@ function afficherProduitsActifs(data) {
     let lesProduits = document.getElementById('lesProduitsActifs');
 
 
-    let tr0 = document.createElement('tr');
-    lesProduits.appendChild(tr0);
-    let th1 = document.createElement('th');
-    let th1Contenue = document.createTextNode('Image');
-    th1.appendChild(th1Contenue);
-    tr0.appendChild(th1);
-
-    let th2 = document.createElement('th');
-    let th2Contenue = document.createTextNode('Nom');
-    th2.appendChild(th2Contenue);
-    tr0.appendChild(th2);
-
-    let th3 = document.createElement('th');
-    let th3Contenue = document.createTextNode('Type de bois');
-    th3.appendChild(th3Contenue);
-    tr0.appendChild(th3);
-
-    let th4 = document.createElement('th');
-    let th4Contenue = document.createTextNode('Username vendeur');
-    th4.appendChild(th4Contenue);
-    tr0.appendChild(th4);
-
-    let th5 = document.createElement('th');
-    let th5Contenue = document.createTextNode('Categorie');
-    th5.appendChild(th5Contenue);
-    tr0.appendChild(th5);
-
-    let th6 = document.createElement('th');
-    let th6Contenue = document.createTextNode('Prix');
-    th6.appendChild(th6Contenue);
-    tr0.appendChild(th6);
-
-    let th7 = document.createElement('th');
-    let th7Contenue = document.createTextNode('Action');
-    th7.appendChild(th7Contenue);
-    tr0.appendChild(th7);
-
-
     for (let unProduit of data) {
 
         let tr = document.createElement('tr');
@@ -305,43 +267,6 @@ function afficherUser(data) {
 function afficherProduitsInactifs(data) {
     let lesProduits = document.getElementById('lesProduitsInactifs');
 
-    let tr0 = document.createElement('tr');
-    lesProduits.appendChild(tr0);
-    let th1 = document.createElement('th');
-    let th1Contenue = document.createTextNode('Image');
-    th1.appendChild(th1Contenue);
-    tr0.appendChild(th1);
-
-    let th2 = document.createElement('th');
-    let th2Contenue = document.createTextNode('Nom');
-    th2.appendChild(th2Contenue);
-    tr0.appendChild(th2);
-
-    let th3 = document.createElement('th');
-    let th3Contenue = document.createTextNode('Type de bois');
-    th3.appendChild(th3Contenue);
-    tr0.appendChild(th3);
-
-    let th4 = document.createElement('th');
-    let th4Contenue = document.createTextNode('Username vendeur');
-    th4.appendChild(th4Contenue);
-    tr0.appendChild(th4);
-
-    let th5 = document.createElement('th');
-    let th5Contenue = document.createTextNode('Categorie');
-    th5.appendChild(th5Contenue);
-    tr0.appendChild(th5);
-
-    let th6 = document.createElement('th');
-    let th6Contenue = document.createTextNode('Prix');
-    th6.appendChild(th6Contenue);
-    tr0.appendChild(th6);
-
-    let th7 = document.createElement('th');
-    let th7Contenue = document.createTextNode('Actif');
-    th7.appendChild(th7Contenue);
-    tr0.appendChild(th7);
-
 
     for (let unProduit of data) {
 
@@ -399,13 +324,13 @@ function afficherProduitsInactifs(data) {
         listeActifs.style.width = "150px";
         listeActifs.id = unProduit.actif;
         listeActifs.classList.add('form-select');
-        let lesActifs = ['Actif','Inactif'];
+        let lesActifs = ['Actif', 'Inactif'];
         let lActif;
         for (const unActif of lesActifs) {
             let option;
-            if(unActif == 'Actif'){
+            if (unActif == 'Actif') {
                 lActif = '1';
-            }else{
+            } else {
                 lActif = '0';
             }
             if (lActif == unProduit.actif) {
@@ -420,9 +345,9 @@ function afficherProduitsInactifs(data) {
 
         listeActifs.onchange = () => {
             let changementActif;
-            if(lActif == '0'){
+            if (lActif == '0') {
                 changementActif = '1';
-            }else{
+            } else {
                 changementActif = '0'
             }
             $.ajax({

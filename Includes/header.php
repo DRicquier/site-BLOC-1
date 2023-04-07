@@ -13,7 +13,7 @@ if (!isset($_SESSION['user'])) {
                             <a class="nav-item nav-link" data-toggle="dropdown">Objets</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="../../pages/jouets/index.php">Jouets</a>
-                                <a class="dropdown-item" href="../../pages/status/index.php">Status</a>
+                                <a class="dropdown-item" href="../../pages/status/index.php">Statue</a>
                                 <a class="dropdown-item" href="../../pages/deco/index.php">Déco</a>
                                 <a class="dropdown-item" href="../../pages/outils/index.php">Outils</a>
                                 <a class="dropdown-item" href="../../pages/divers/index.php">Divers</a>
@@ -43,7 +43,7 @@ if (!isset($_SESSION['user'])) {
                         <a class="nav-item nav-link" data-toggle="dropdown">Objets</a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="../../pages/jouets/index.php">Jouets</a>
-                            <a class="dropdown-item" href="../../pages/status/index.php">Status</a>
+                            <a class="dropdown-item" href="../../pages/status/index.php">Statue</a>
                             <a class="dropdown-item" href="../../pages/deco/index.php">Déco</a>
                             <a class="dropdown-item" href="../../pages/outils/index.php">Outils</a>
                             <a class="dropdown-item" href="../../pages/divers/index.php">Divers</a>
@@ -74,7 +74,7 @@ if (!isset($_SESSION['user'])) {
                         <a class="nav-item nav-link" data-toggle="dropdown">Objets</a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="../../pages/jouets/index.php">Jouets</a>
-                            <a class="dropdown-item" href="../../pages/status/index.php">Status</a>
+                            <a class="dropdown-item" href="../../pages/status/index.php">Statue</a>
                             <a class="dropdown-item" href="../../pages/deco/index.php">Déco</a>
                             <a class="dropdown-item" href="../../pages/outils/index.php">Outils</a>
                             <a class="dropdown-item" href="../../pages/divers/index.php">Divers</a>

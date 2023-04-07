@@ -48,7 +48,19 @@
         <div class="gestionProduitsActifs">
             <h1 class="display-7">Les produits actifs</h1>
             <div class=" produit overflow-scroll">
-                <table style="width: 150%" id="lesProduitsActifs">
+                <table class="table" style="width: 150%">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Image</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Type de bois</th>
+                        <th scope="col">Username du vendeur</th>
+                        <th scope="col">Catégorie</th>
+                        <th scope="col">Prix</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody id="lesProduitsActifs"></tbody>
                 </table>
             </div>
 
@@ -56,7 +68,19 @@
         <div class="gestionProduitsInactifs">
             <h1 class="display-7">Les produits inactifs</h1>
             <div class=" produit overflow-scroll">
-                <table style="width: 150%" id="lesProduitsInactifs">
+                <table style="width: 150%">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Image</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Type de bois</th>
+                        <th scope="col">Username du vendeur</th>
+                        <th scope="col">Catégorie</th>
+                        <th scope="col">Prix</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody id="lesProduitsInactifs"></tbody>
                 </table>
             </div>
         </div>
